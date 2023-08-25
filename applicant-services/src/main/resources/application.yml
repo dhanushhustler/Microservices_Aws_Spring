@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: applicant-services
+server:
+  port: 8081
+  servlet:
+    context-path: /applicants
+
+logging:
+  level:
+    root: info
+    com.czetsuyatech: debug
+    org.springframework.web.filter.CommonsRequestLoggingFilter: debug
+
+resilience4j:
+  circuitbreaker:
+    metrics:
+      enabled: true
+  retry:
+    instances:
+      default:
+        maxRetryAttempts: 5
+        waitDuration: 1
+        enableExponentialBackoff: true
+feign:
+  httpclient:
+    enabled: true
+    connection-timeout: 5000
+  client:
+    compression:
+      response:
+        enabled: true
+      request:
+        enabled: true
+cx:
+  aws:
+    xray:
+      enabled: true
