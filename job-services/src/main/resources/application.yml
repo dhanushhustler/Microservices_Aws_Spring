@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: job-services
+server:
+  port: 8080
+  servlet:
+    context-path: /jobs
+logging:
+  level:
+    root: info
+    com.czetsuyatech: debug
+    org.springframework.web.filter.CommonsRequestLoggingFilter: debug
+app:
+  ct:
+    client:
+      applicant:
+        url: ${APPLICATION_SERVICE_URL:http://localhost:8081}
+feign:
+  httpclient:
+    enabled: true
+    connection-timeout: 5000
+  client:
+    compression:
+      response:
+        enabled: true
+      request:
+        enabled: true
+cx:
+  aws:
+    xray:
+      enabled: true
